@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Restaurant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .restaurant {
+            text-align: center;
+        }
+        #foodImage {
+            display: none;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="restaurant">
+    <h1>Virtual Restaurant</h1>
+    <label for="foodItems">Select Food Items:</label>
+    <br>
+    <input type="checkbox" id="burger" name="food" value="Burger">
+    <label for="burger">Burger</label>
+
+    <input type="checkbox" id="pizza" name="food" value="Pizza">
+    <label for="pizza">Pizza</label>
+
+    <input type="checkbox" id="pasta" name="food" value="Pasta">
+    <label for="pasta">Pasta</label>
+
+    <br><br>
+    <button onclick="orderFood()">Order Food</button>
+
+    <div id="foodImage"></div>
+</div>
+
+<script>
+    function orderFood() {
+        const selectedFoodItems = document.querySelectorAll('input[name="food"]:checked');
+        if (selectedFoodItems.length === 0) {
+            alert('Please select at least one food item.');
+            return;
+        }
+
+        const orderId = generateOrderId();
+        const foodImageDiv = document.getElementById('foodImage');
+
+        // Simulating a promise that resolves after a random time (1 to 5 seconds).
+        const promise = new Promise((resolve) => {
+            const randomTime = Math.floor(Math.random() * 5000) + 1000;
+            setTimeout(() => {
+                resolve();
+            }, randomTime);
+        });
+
+        promise.then(() => {
+            // Show food image and order ID after the promise is resolved.
+            const selectedFood = Array.from(selectedFoodItems).map(item => item.value).join(', ');
+            const imageUrl = getImageUrl(selectedFood);
+
+            foodImageDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${selectedFood}">
+                <p>Order ID: ${orderId}</p>
+            `;
+            foodImageDiv.style.display = 'block';
+        });
+    }
+
+    function generateOrderId() {
+        return 'ORD' + Math.floor(Math.random() * 10000);
+    }
+
+    function getImageUrl(food) {
+        // Replace these URLs with actual URLs of food images.
+        const foodImageMap = {
+            'Burger':"https://www.shutterstock.com/image-photo/tasty-pork-buger-on-wooden-260nw-734784787.jpg",
+            'Pizza': 'https://example.com/pizza.jpg',
+            'Pasta': 'https://example.com/pasta.jpg'
+        };
+        return foodImageMap[food] || 'https://example.com/placeholder.jpg';
+    }
+</script>
+
+</body>
+</html>

@@ -1,185 +1,91 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Image Slider</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change images</title>
   <style>
     body{
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #23E3C9;
+background-color: aqua;
+    }
+    h1{
+      margin-left: 400px;
+      font-size: 40px;
+      font-family: cera-round-pro, "Helvetica Neue", Helvetica, Arial, sans-serif;;
+    }
+    #frame{
+      border: 1px solid black;
+      height: 300px;
+      width: 600px;
+      margin-top: 50px;
+      margin-left: 300px;
+    }
+    #image{
+      width: 600px;;
+      height: 300px;
+    }
+#button{
+  margin-top: 50px;
+  margin-left: 480px;
+ display: flex;
+  border: none;
+  width: 200px;
+  justify-content: space-evenly;
 }
-
-.slider{
-  width: 800px;
-  height: 500px;
-  border-radius: 10px;
-  overflow: hidden;
+button{
+  width: 70px;
+  height: 50px;
+  font-size: 25px;
+ 
 }
-
-.slides{
-  width: 500%;
-  height: 500px;
-  display: flex;
-}
-
-.slides input{
-  display: none;
-}
-
-.slide{
-  width: 20%;
-  transition: 2s;
-}
-
-.slide img{
-  width: 800px;
-  height: 500px;
-}
-
-/*css for manual slide navigation*/
-
-.navigation-manual{
-  position: absolute;
-  width: 800px;
-  margin-top: -40px;
-  display: flex;
-  justify-content: center;
-}
-
-.manual-btn{
-  border: 2px solid #40D3DC;
-  padding: 5px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 1s;
-}
-
-.manual-btn:not(:last-child){
-  margin-right: 40px;
-}
-
-.manual-btn:hover{
-  background: #40D3DC;
-}
-
-#radio1:checked ~ .first{
-  margin-left: 0;
-}
-
-#radio2:checked ~ .first{
-  margin-left: -20%;
-}
-
-#radio3:checked ~ .first{
-  margin-left: -40%;
-}
-
-#radio4:checked ~ .first{
-  margin-left: -60%;
-}
-
-/*css for automatic navigation*/
-
-.navigation-auto{
-  position: absolute;
-  display: flex;
-  width: 800px;
-  justify-content: center;
-  margin-top: 460px;
-}
-
-.navigation-auto div{
-  border: 2px solid #40D3DC;
-  padding: 5px;
-  border-radius: 10px;
-  transition: 1s;
-}
-
-.navigation-auto div:not(:last-child){
-  margin-right: 40px;
-}
-
-#radio1:checked ~ .navigation-auto .auto-btn1{
-  background: #40D3DC;
-}
-
-#radio2:checked ~ .navigation-auto .auto-btn2{
-  background: #40D3DC;
-}
-
-#radio3:checked ~ .navigation-auto .auto-btn3{
-  background: #40D3DC;
-}
-
-#radio4:checked ~ .navigation-auto .auto-btn4{
-  background: #40D3DC;
-}
-      
   </style>
-  <body>
+</head>
+<body>
+  <h1>CHANGE IMAGES 🖼️🎞️</h1>
+  <div id="frame">
+<img id="image" src="https://th.bing.com/th/id/R.6335824752191f41b704f99cfe651b2e?rik=zA4ORbuYDYJ1QQ&pid=ImgRaw&r=0" alt="">
+  </div>
+  <div id="button">
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </div>
+</body>
+<script>
+  let imageArr=[      
+  "https://images.unsplash.com/photo-1682686581551-867e0b208bd1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
+  "https://plus.unsplash.com/premium_photo-1669833444695-43abbfc55ac0?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1682686581498-5e85c7228119?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8",
+  "https://plus.unsplash.com/premium_photo-1700081738287-36f6d5e5ca81?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1697219590638-d2db7748802e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1701743805074-84362fbc8122?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D",
+"https://images.unsplash.com/photo-1682686581484-a220483e6291?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8",
+"https://images.unsplash.com/photo-1702103208377-f91a3832b6ec?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHx8",
+"https://images.unsplash.com/photo-1682687982183-c2937a74257c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8",
+"https://images.unsplash.com/photo-1607716842366-6b9248809948?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
+"https://images.unsplash.com/photo-1701718199716-c88688fd9a2a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxM3x8fGVufDB8fHx8fA%3D%3D"];
 
-    <!--image slider start-->
-    <div class="slider">
-      <div class="slides">
-        <!--radio buttons start-->
-        <input type="radio" name="radio-btn" id="radio1">
-        <input type="radio" name="radio-btn" id="radio2">
-        <input type="radio" name="radio-btn" id="radio3">
-        <input type="radio" name="radio-btn" id="radio4">
-        <!--radio buttons end-->
-        <!--slide images start-->
-        <div class="slide first">
-          <img src="https://images.unsplash.com/photo-1565915775844-9b853c814c4c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHw2SG1ENG5vbUptMHx8ZW58MHx8fHx8" alt="">
-        </div>
-        <div class="slide">
-          <img src="https://images.unsplash.com/photo-1609780232681-2c2d078f43ee?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8Nnw2SG1ENG5vbUptMHx8ZW58MHx8fHx8" alt="">
-        </div>
-        <div class="slide">
-          <img src="https://images.unsplash.com/photo-1623005399550-57b86a3539a8?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8N3w2SG1ENG5vbUptMHx8ZW58MHx8fHx8" alt="">
-        </div>
-        <div class="slide">
-          <img src="https://plus.unsplash.com/premium_photo-1679437977020-4730ae98a0d7?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHw2SG1ENG5vbUptMHx8ZW58MHx8fHx8" alt="">
-        </div>
-        
-        <!--slide images end-->
-        <!--automatic navigation start-->
-        <div class="navigation-auto">
-          <div class="auto-btn1"></div>
-          <div class="auto-btn2"></div>
-          <div class="auto-btn3"></div>
-          <div class="auto-btn4"></div>
-        </div>
-        <!--automatic navigation end-->
-      </div>
-      <!--manual navigation start-->
-      <div class="navigation-manual">
-        <label for="radio1" class="manual-btn"></label>
-        <label for="radio2" class="manual-btn"></label>
-        <label for="radio3" class="manual-btn"></label>
-        <label for="radio4" class="manual-btn"></label>
-      </div>
-      <!--manual navigation end-->
-    </div>
-    <!--image slider end-->
+  let image=document.querySelector("img")
+ 
+ let current=1
+let intervalid;
+let startChangingimages=function(){
+  
+ 
+  intervalid=setInterval(() => {
+    image.setAttribute("src", imageArr[current]);
+        current = (current + 1) % imageArr.length; // Reset to 0 when reaching the end
+      }, 1000);
+}
 
-    <script type="text/javascript">
-    var counter = 1;
-    setInterval(function(){
-      document.getElementById('radio' + counter).checked = true;
-      counter++;
-      if(counter > 4){
-        counter = 1;
-      }
-    }, 5000);
-    </script>
 
-  </body>
+let stopChangingimages=function(){
+  
+  clearInterval(intervalid)
+}
+
+
+  document.querySelector("#start").addEventListener("click",startChangingimages);
+  document.querySelector("#stop").addEventListener("click",stopChangingimages);
+</script>
 </html>
-      

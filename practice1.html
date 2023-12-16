@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise-2</title>
+</head>
+<body>
+    <h1>Promise-2</h1>
+</body>
+<script>
+let isRequestSucessful=true;
+let request=new Promise(function(resolve,reject){
+    setTimeout(function(){
+        if(isRequestSucessful==true){
+        resolve("request is sucessful")
+    }
+    else{
+        reject("request is rejected")
+    }
+    },3000) 
+})
+
+request.then(function(productdata){
+    console.log(productdata)
+})
+.catch(function(err){
+    console.log(err)
+})
+.finally(function(){
+    console.log("code has run completely")
+})
+
+</script>
+</html>

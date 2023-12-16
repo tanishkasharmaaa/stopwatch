@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback Function</title>
+</head>
+<body>
+    <h1>Callback Function</h1>
+</body>
+<script>
+//function by using CALLBACK
+
+
+
+//   function firstTask(cb) {
+//     setTimeout(function() {
+//         console.log("first task is completed");
+//         cb(); // Callback function to signal completion
+//     }, 1000);
+// }
+
+// function secondTask(cb) {
+//     setTimeout(function() {
+//         console.log("second task completed");
+//         cb()
+//     }, 1000);
+// }
+
+// function thirdTask(cb) {
+//     setTimeout(function() {
+//         console.log("third task completed");
+//         cb()
+//     }, 1000);
+// }
+
+// // Execute tasks in sequence, with callbacks signaling completion
+// firstTask(function() {
+//     secondTask(function() {
+//         thirdTask(function() {
+//             console.log("every assigned task has completed");
+//         });
+//     });
+// });
+
+
+
+// function by using PROMISES
+
+
+
+function firstTask() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            console.log("first task completed");
+            resolve();
+        }, 1000);
+    });
+}
+
+function secondTask() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            console.log("second task completed");
+            resolve();
+        }, 1000);
+    });
+}
+
+function thirdTask() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            console.log("third task completed");
+            resolve();
+        }, 1000);
+    });
+}
+
+function fourthTask() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            console.log("fourth task completed");
+            resolve();
+        }, 1000);
+    });
+}
+
+firstTask()
+    .then(function() {
+        return secondTask();
+    })
+    .then(function() {
+        return thirdTask();
+    })
+    .then(function() {
+        return fourthTask();
+    })
+    .then(function() {
+        console.log("every assigned task has completed");
+    })
+    .catch(function(error) {
+        console.error("An error occurred:", error);
+    });
+
+</script>
+</html>
