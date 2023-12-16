@@ -9,47 +9,67 @@
     body{
 background-color: aqua;
     }
+    h1:hover{
+      
+    }
     h1{
-      margin-left: 400px;
-      font-size: 40px;
+      margin-left: 440px;
+      font-size: 60px;
       font-family: cera-round-pro, "Helvetica Neue", Helvetica, Arial, sans-serif;;
+      line-height: 60px;
+      font-weight: 800;
+    }
+    #container{
+      border: 2px solid green;
+       margin-top: 50px;
+      margin-left: 300px;
+      width: 660px;
+      background-color: black;
     }
     #frame{
+      border-radius: 20px;
       border: 1px solid black;
       height: 300px;
       width: 600px;
-      margin-top: 50px;
-      margin-left: 300px;
+     margin-top: 30px;
+     margin-left: 30px;
     }
     #image{
       width: 600px;;
       height: 300px;
+      border-radius: 20px;
     }
 #button{
-  margin-top: 50px;
-  margin-left: 480px;
+  margin-top: 20px;
+  margin-left: 180px;
  display: flex;
   border: none;
-  width: 200px;
+  width: 300px;
+  
   justify-content: space-evenly;
+  padding-bottom: 20px;
+  
 }
 button{
-  width: 70px;
+  box-shadow: rgb(255, 255, 255) 0px 50px 100px -20px, rgb(255, 255, 255) 0px 30px 60px -30px;
+  width: 100px;
   height: 50px;
   font-size: 25px;
+  border-radius: 10px;
  
 }
   </style>
 </head>
 <body>
-  <h1>SLIDE SHOW 🖼️🎞️</h1>
+  <h1>SLIDE SHOW </h1>
+  <div id="container">
   <div id="frame">
 <img id="image" src="https://th.bing.com/th/id/R.6335824752191f41b704f99cfe651b2e?rik=zA4ORbuYDYJ1QQ&pid=ImgRaw&r=0" alt="">
   </div>
   <div id="button">
     <button id="start">Start</button>
     <button id="stop">Stop</button>
-  </div>
+  </div></div>
 </body>
 <script>
   let imageArr=[      
